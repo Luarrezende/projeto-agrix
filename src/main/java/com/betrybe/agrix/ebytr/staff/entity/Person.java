@@ -7,12 +7,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Objects;
 
 /**
  * Class representing a person.
  */
 @Entity
+@Table(name = "persons")
 public class Person {
 
   @Id
@@ -27,6 +29,13 @@ public class Person {
   private Role role;
 
   public Person() {
+  }
+
+  public Person(Long id, String username, String password, Role role) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.role = role;
   }
 
   public Long getId() {
