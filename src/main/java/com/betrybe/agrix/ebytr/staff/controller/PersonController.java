@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/*
- * @project ebytr
+/**
+ * Person Controller.
  */
 @RestController
 @RequestMapping("/persons")
@@ -23,10 +23,14 @@ public class PersonController {
     this.personService = personService;
   }
 
+  /**
+   * Create person.
+   */
   @PostMapping
   public ResponseEntity<PersonDto> createPerson(@RequestBody PersonDto2 personDto) {
     Person person = personService.create(personDto.toPerson());
-    PersonDto personDtoCreated = new PersonDto(person.getId(), person.getUsername(), person.getRole());
+    PersonDto personDtoCreated = new PersonDto(person.getId(),
+          person.getUsername(), person.getRole());
     return ResponseEntity.status(HttpStatus.CREATED).body(personDtoCreated);
   }
 }
